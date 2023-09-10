@@ -1,20 +1,73 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import {SafeAreaView,Text,TextInput,View,Button,ScrollView,} from "react-native";
+import Radiobutton from "./components/RadioButtonComponent";
+import NumericInputBottles from "./components/NumericInputBottles";
+import NumericInputHours from "./components/NumericInputHours";
+import SwitchComponent from "./components/SwitchComponent";
+import { useState } from "react";
+import { BasicStyle, DarkStyle } from "./styles/stylesThemes";
+import { colorOfTheResult } from "./functions/colorOfTheResult";
+import { bloodAlcoholLevel } from "./functions/bloodAlcoholLevel";
 
 export default function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const currentStyle = isDarkMode ? DarkStyle : BasicStyle;
+
+  const [weight,setWeight]=useState(0);
+  const [bottles, setBottles]=useState(0);
+  const [hours, setHours] =useState(0);
+  const [sexual, setSexual]=useState('male')
+  const [resultAlcohol, setResultAlcohol]=useState('')
+
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={currentStyle.container}>
+      <ScrollView>
+
+        <SwitchComponent
+          isDarkMode={isDarkMode}
+          setIsDarkMode={setIsDarkMode}
+          currentStyle={currentStyle}
+        />
+        <Text style={currentStyle.header}>Alcometer</Text>
+        <Text style={currentStyle.header_h2}>Weight</Text>
+        <TextInput
+          value={weight}
+          onChangeText={(enteredText)=>setWeight(enteredText)}
+          keyboardType="decimal-pad"
+          style={currentStyle.textInputStyle}
+        />
+
+        <Text style={currentStyle.header_h2}>Bottles</Text>
+        <NumericInputBottles 
+          currentStyle={currentStyle} 
+          bottles={bottles}
+          setBottles={setBottles}
+          />
+        <Text style={currentStyle.header_h2}>Hours</Text>
+        <NumericInputHours 
+          currentStyle={currentStyle} 
+          hours={hours}
+          setHours={setHours}
+          />
+
+        <Radiobutton 
+          currentStyle={currentStyle}
+          sexual={sexual}
+          setSexual={setSexual}
+          />
+        
+        <Text style={colorOfTheResult(resultAlcohol)}>{resultAlcohol}</Text>
+        
+        <View style={currentStyle.buttonStyle}>
+          <Button 
+            title="CALCULATE" 
+            onPress={()=> setResultAlcohol(bloodAlcoholLevel(bottles, weight, hours, sexual))}
+            />
+        </View>
+
+        <StatusBar style="auto" />
+      </ScrollView>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
