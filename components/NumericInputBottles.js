@@ -1,5 +1,5 @@
 import NumericInput from 'react-native-numeric-input';
-import { SafeAreaView, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
+import { View } from 'react-native';
 
 export default function NumericInputBottles(props) {
    

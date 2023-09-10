@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {Switch, View} from 'react-native';
 
 
