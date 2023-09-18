@@ -1,7 +1,9 @@
+import { createAlert } from "./alert"
+
 //function that calculates blood alcohol level.
   const bloodAlcoholLevel= (bottles, weight, hours, sexual)=>{
     if (weight==0){
-      return("Enter your weight")
+      createAlert()
     }
     else{
       grams= bottles*0.33*8*4.5
