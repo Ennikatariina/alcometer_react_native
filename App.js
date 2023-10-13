@@ -19,7 +19,7 @@ export default function App() {
   const [gender, setgender]=useState('male')
   const [resultAlcohol, setResultAlcohol]=useState('')
 
-  
+  console.log(typeof weight)
   return (
     <SafeAreaView style={currentStyle.container}>
       <ScrollView>

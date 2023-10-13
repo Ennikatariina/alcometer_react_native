@@ -7,12 +7,12 @@ export default function RadioButtonComponent(props) {
     
     return(
         <View>
-            <RadioButton.Group value={props.sexual} onValueChange={s => props.setSexual(s)}>
+            <RadioButton.Group value={props.gender} onValueChange={s => props.setgender(s)}>
                 <View style={props.currentStyle.radioStyle}>
                     <RadioButton 
                         value='male' 
                         color={props.currentStyle.uncheckedColor}
-                        status={ props.sexual === 'male' ? 'checked' : 'unchecked' }
+                        status={ props.gender === 'male' ? 'checked' : 'unchecked' }
                     />
                     <Text style={props.currentStyle.radioText}>Male</Text>
                 </View>  
@@ -20,7 +20,7 @@ export default function RadioButtonComponent(props) {
                     <RadioButton 
                     value='female'
                     color={props.currentStyle.uncheckedColor}
-                    status={props.sexual === 'female' ? 'checked' : 'unchecked' }
+                    status={props.gender === 'female' ? 'checked' : 'unchecked' }
                     />
                     <Text style={props.currentStyle.radioText}>Female</Text>
                 </View>  
