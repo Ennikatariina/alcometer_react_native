@@ -16,7 +16,7 @@ export default function App() {
   const [weight,setWeight]=useState(0);
   const [bottles, setBottles]=useState(0);
   const [hours, setHours] =useState(0);
-  const [sexual, setSexual]=useState('male')
+  const [gender, setgender]=useState('male')
   const [resultAlcohol, setResultAlcohol]=useState('')
 
   
@@ -32,7 +32,7 @@ export default function App() {
         <Text style={currentStyle.header}>Alcometer</Text>
         <Text style={currentStyle.header_h2}>Weight</Text>
         <TextInput
-          value={weight}
+          value={weight.toString()}
           onChangeText={(enteredText)=>setWeight(enteredText)}
           keyboardType="decimal-pad"
           style={currentStyle.textInputStyle}
@@ -53,8 +53,8 @@ export default function App() {
 
         <Radiobutton 
           currentStyle={currentStyle}
-          sexual={sexual}
-          setSexual={setSexual}
+          gender={gender}
+          setgender={setgender}
           />
         
         <Text style={colorOfTheResult(resultAlcohol)}>{resultAlcohol}</Text>
@@ -62,7 +62,7 @@ export default function App() {
         <View style={currentStyle.buttonStyle}>
           <Button 
             title="CALCULATE" 
-            onPress={()=> setResultAlcohol(bloodAlcoholLevel(bottles, weight, hours, sexual))}
+            onPress={()=> setResultAlcohol(bloodAlcoholLevel(bottles, weight, hours, gender))}
             />
         </View>
 
